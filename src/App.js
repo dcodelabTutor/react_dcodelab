@@ -1,7 +1,6 @@
 import './css/style.css';
 import {Route} from 'react-router-dom';
 
-
 //import common component
 import Header from './components/common/Header.js';
 import Footer from './components/common/Footer.js';
