@@ -13,7 +13,7 @@ function Community(){
         console.log(json.data.data);
         setPosts(json.data.data);
       })
-  })
+  },[]);
 
   return (
     <main>
