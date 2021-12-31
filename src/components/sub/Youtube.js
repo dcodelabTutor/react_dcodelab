@@ -4,7 +4,6 @@
   3. 각각의 가상DOM요소 클릭시 레이어팝업 동적으로 생성
   4. 해당 레이어팝업 안쪽에 데이터와, 순서관련 state값을 활용해서 세부 컨텐츠 출력
 */
-
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
@@ -30,6 +29,31 @@ function Youtube(){
       <div className="inner">
         <h1><a href="#">Youtube</a></h1>
 
+        <section className="frame">
+          {
+            
+            data.map((item, index)=>{
+              let tit = item.snippet.title;
+              let tit_len = tit.length;
+
+              let desc = item.snippet.description;
+              let desc_len = desc.length;
+              
+
+              return (
+                <article key={index}>
+                  <div className="inner">
+                    <div className="pic">
+                      <img src={item.snippet.thumbnails.medium.url} />
+                      <h2>{(tit_len > 40) ? tit =  tit.substr(0,40)+"..." : tit}</h2>
+                      <p>{(desc_len > 150) ? desc =  desc.substr(0,250)+"..." : desc}</p>
+                    </div>
+                  </div>
+                </article>
+              )
+            })
+          }
+        </section>
       </div>
     </main>
   )
