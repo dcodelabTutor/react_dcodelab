@@ -225,12 +225,35 @@ figure {
   width: 100%;
   height: 150px;
   overflow: hidden;
+  cursor: pointer;
 }
 .youtube .inner .frame article .inner .pic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1.5);
+}
+.youtube .inner .pop {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 5vw;
+}
+.youtube .inner .pop iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.youtube .inner .pop span {
+  position: absolute;
+  top: 3vw;
+  right: 5vw;
+  font: bold 14px/1 "arial";
+  color: #fff;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
