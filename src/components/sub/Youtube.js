@@ -6,6 +6,7 @@
 */
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react/cjs/react.production.min';
 
 function Youtube(){
   let [data, setData] = useState([]);
@@ -13,17 +14,17 @@ function Youtube(){
   let [index, setIndex] = useState(0);
 
   const api_key = "AIzaSyB7VIAECTixPlj0sr-goHwkmNRFIwxZntA";
-  const playListId = "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd";
-  const num = 5;
+  //const playListId = "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd";
+  const playListId = "PLGOVj4gmzJyBMQSKPpBoycEvgXVFPMRZV";
+  const num = 10;
   const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${api_key}&playlistId=${playListId}&maxResults=${num}`; 
 
   useEffect(()=>{
     axios
       .get(url)
-      .then(json=>{
-        console.log(json.data.items);
+      .then(json=>{    
         setData(json.data.items);        
-      }) 
+      })
   },[]);
 
   return (
