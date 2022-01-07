@@ -8,6 +8,11 @@
 @import "main/visual";
 @import "main/info";
 
+#box {
+  width: 200px; height: 200px;
+  background: hotpink;
+}
+
 //sub page style
 @import "sub/department";
 @import "sub/community";

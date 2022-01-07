@@ -120,6 +120,12 @@ figure {
   margin: 0px auto;
 }
 
+#box {
+  width: 200px;
+  height: 200px;
+  background: hotpink;
+}
+
 .gallery .inner > section::after {
   content: "";
   display: block;
