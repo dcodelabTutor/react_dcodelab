@@ -10,16 +10,20 @@ function Join(){
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = e => {   
     const {name, value} = e.target;     
-    setVal({...val, [name]: value});   
+    setVal({...val, [name]: value});     
   }
 
   //submit이벤트 발생하면 실행되는 함수
   const handleSubmit = e =>{ 
     e.preventDefault();   
+    setIsSubmit(true);
     setErr(check(val));  
+
   }
 
   //에러 객체를 반환하는 함수
@@ -47,19 +51,16 @@ function Join(){
     return errs;
   }
 
-  //미션1- pwd2 input요소 추가후  pwd1이랑, pwd2의 값이 같아야지 인증 통과
-  //미션2- textarea도 인증항목에 포함
-  //미션3- 인풋아래쪽에 span태그로 에러문구 출력
-
-
  
   useEffect(()=>{        
     console.log(err);
     const len =  Object.keys(err).length;
-    if(len === 0){
+    if(len === 0 && isSubmit){
       console.log('인증 성공');
+      setSuccess(true);     
     }else{
       console.log('인증 실패');
+      setSuccess(false);
     }
   },[err]);
 
@@ -67,6 +68,8 @@ function Join(){
     <main className='join'>
       <div className="inner">
         <h1><a href="#">Join</a></h1>
+
+        {success ? <div>회원가입을 축하합니다.</div> : null }
 
         <form onSubmit={handleSubmit}>
           <fieldset>
