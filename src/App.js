@@ -17,6 +17,7 @@ import Gallery from './components/sub/Gallery.js';
 import Youtube from './components/sub/Youtube.js';
 import Location from './components/sub/Location.js';
 import Join from './components/sub/Join.js';
+
 import { useEffect, useRef } from 'react';
 
 
