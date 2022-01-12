@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 function Join(){
   const initVal={
-    userid : ''   
+    userid : '' ,
+    email: ''  
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
@@ -21,15 +22,24 @@ function Join(){
   //에러 객체를 반환하는 함수
   const check = val=>{
     let errs = {};  
-    if( !val.userid || val.userid.length <5 ) errs.userid='아이디 5글자 이상입력';
+    if( !val.userid || val.userid.length <5 ){
+      errs.userid='아이디 5글자 이상입력';
+    } 
+    if( !val.email || val.email.length <8 ){
+      errs.email='이메일주소를 8글자 이상입력';
+    }
     return errs;
   }
 
-  //전송 버튼을 눌러서 err state값이 바뀔때에만 호출
-  useEffect(()=>{
-    //해당 코드 블록안에서 err스테이트에 담겨있는 객체값이 비어있으면
-    //모든 인증을 통과한 상태라서 회원가입 완료처리
+ 
+  useEffect(()=>{        
     console.log(err);
+    const len =  Object.keys(err).length;
+    if(len === 0){
+      console.log('모든 인풋요소 인증통과')
+    }else{
+      console.log('인증 실패');
+    }
   },[err]);
 
   return (
@@ -59,6 +69,21 @@ function Join(){
                     />
                   </td>
                 </tr> 
+                <tr>
+                  <th scope='row'>
+                    <label htmlFor="email">E-MAIL</label>
+                  </th>
+                  <td>
+                    <input 
+                      type="text" 
+                      id='email'
+                      name='email'
+                      placeholder='이메일 주소를 입력하세요'
+                      value={val.email}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
                 <tr>
                   <th colSpan='2'>
                     <input type="reset" value='CANCEL' />
