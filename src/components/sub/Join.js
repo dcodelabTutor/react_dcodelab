@@ -9,8 +9,11 @@ function Join(){
   const [val, setVal] = useState(initVal);
 
   //input에 변화점이 생길때마다 실행될 함수
-  const handleChange = e => {
-    console.log(e.target);
+  const handleChange = e => {   
+    const {name, value} = e.target;
+    //console.log(`name:${name}, value:${value}`);
+    setVal({...val, [name]: value});
+    console.log(val);
   }
 
   return (
