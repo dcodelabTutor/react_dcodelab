@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 function Join(){
   const initVal={
-    userid : '' ,
+    userid : '',
+    pwd1 : '',
     email: ''  
   }
   const [val, setVal] = useState(initVal);
@@ -22,10 +23,17 @@ function Join(){
   //에러 객체를 반환하는 함수
   const check = val=>{
     let errs = {};  
+    let eng = /[a-zA-Z]/;
+    let num = /[0-9]/;
+    let spc = /[!@#$%^&*]/;
+
     if( !val.userid || val.userid.length <5 ){
       errs.userid='아이디 5글자 이상입력';
     } 
-    if( !val.email || val.email.length <8 ){
+    if( !val.pwd1 || val.pwd1.length<5 || !eng.test(val.pwd1) || !num.test(val.pwd1) || !spc.test(val.pwd1)){
+      errs.pwd1='비밀번호는 5글자 이상, 문자,숫자,특수문자를 모두 포함';
+    }
+    if( !val.email || val.email.length <8 || !/@/.test(val.email) ){
       errs.email='이메일주소를 8글자 이상입력';
     }
     return errs;
@@ -36,7 +44,7 @@ function Join(){
     console.log(err);
     const len =  Object.keys(err).length;
     if(len === 0){
-      console.log('모든 인풋요소 인증통과')
+      console.log('인증 성공');
     }else{
       console.log('인증 실패');
     }
@@ -54,6 +62,7 @@ function Join(){
             <table>
               <caption className='h'>회원가입 입력</caption>
               <tbody>
+                {/* userid */}
                 <tr>
                   <th scope='row'>
                     <label htmlFor="userid">USER ID</label>
@@ -69,6 +78,25 @@ function Join(){
                     />
                   </td>
                 </tr> 
+
+                {/* password */}
+                <tr>
+                  <th scope='row'>
+                    <label htmlFor="pwd1">PASSWORD</label>
+                  </th>
+                  <td>
+                    <input 
+                      type="password" 
+                      id='pwd1'
+                      name='pwd1'
+                      placeholder='비밀번호를 입력하세요'
+                      value={val.pwd1}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+
+                {/* email */}
                 <tr>
                   <th scope='row'>
                     <label htmlFor="email">E-MAIL</label>
