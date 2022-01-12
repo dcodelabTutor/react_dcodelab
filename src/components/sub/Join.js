@@ -5,7 +5,8 @@ function Join(){
     userid : '',
     pwd1 : '',
     pwd2 : '',
-    email: ''  
+    email: '',
+    comments: ''
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
@@ -37,8 +38,11 @@ function Join(){
     if( !val.email || val.email.length <8 || !/@/.test(val.email) ){
       errs.email='이메일주소를 8글자 이상입력';
     }
-    if( val.pwd1 !== val.pwd2 ){
+    if( !val.pwd2 || val.pwd1 !== val.pwd2 ){
       errs.pwd2='두개의 비밀번호를 동일하게 입력';
+    }
+    if( !val.comments || val.comments.length <10 ){
+      errs.comments='남기는말을 10글자 이상입력';
     }
     return errs;
   }
@@ -142,6 +146,27 @@ function Join(){
                     <span className='err'>{err.email}</span>
                   </td>
                 </tr>
+
+                {/* comments */}
+                <tr>
+                  <th scope='row'>
+                    <label htmlFor="comments">COMMENTS</label>
+                  </th>
+                  <td>
+                    <textarea
+                      col='30'
+                      row='10'
+                      id='comments'
+                      name='comments'
+                      placeholder='남기는 말을 적어주세요'
+                      value={val.comments}
+                      onChange={handleChange}
+                    ></textarea>
+                    <span className='err'>{err.comments}</span>
+                  </td>
+                </tr>
+
+                {/* btn set */}
                 <tr>
                   <th colSpan='2'>
                     <input type="reset" value='CANCEL' />
