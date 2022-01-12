@@ -280,4 +280,9 @@ figure {
   cursor: pointer;
 }
 
+.join .inner .err {
+  font: 11px/1 "맑은 고딕";
+  color: hotpink;
+}
+
 /*# sourceMappingURL=style.css.map */
