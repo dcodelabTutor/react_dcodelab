@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Join(){
   const initVal={
@@ -6,7 +6,8 @@ function Join(){
     pwd1 : '',
     pwd2 : '',
     email: '',
-    comments: ''
+    comments: '',
+    gender: ''
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
@@ -18,12 +19,21 @@ function Join(){
     setVal({...val, [name]: value});     
   }
 
+  const handleCheck = e => {
+    //해당 함수가 실행된 대상의 name값 변수에 저장
+    const {name} = e.target;
+    //이벤트 대상이 체크 유무를 boolean값으로 저장
+    const isCheck = e.target.checked;
+    //val state에 해당 네임을 키, boolean값을 value로 저장
+    setVal({...val, [name]: isCheck});  
+  }
+
   //submit이벤트 발생하면 실행되는 함수
   const handleSubmit = e =>{ 
     e.preventDefault();   
     setIsSubmit(true);
     setErr(check(val));  
-
+    console.log(val);
   }
 
   //에러 객체를 반환하는 함수
@@ -48,9 +58,11 @@ function Join(){
     if( !val.comments || val.comments.length <10 ){
       errs.comments='남기는말을 10글자 이상입력';
     }
+    if( !val.gender ){
+      errs.gender='성별을 선택하세요';
+    }
     return errs;
   }
-
  
   useEffect(()=>{        
     console.log(err);
@@ -88,8 +100,7 @@ function Join(){
                       type="text" 
                       id='userid'
                       name='userid'
-                      placeholder='아이디를 입력하세요'
-                      value={val.userid}
+                      placeholder='아이디를 입력하세요'                    
                       onChange={handleChange}
                     />
                     <span className='err'>{err.userid}</span>
@@ -106,8 +117,7 @@ function Join(){
                       type="password" 
                       id='pwd1'
                       name='pwd1'
-                      placeholder='비밀번호를 입력하세요'
-                      value={val.pwd1}
+                      placeholder='비밀번호를 입력하세요'                  
                       onChange={handleChange}
                     />
                     <span className='err'>{err.pwd1}</span>
@@ -124,8 +134,7 @@ function Join(){
                       type="password" 
                       id='pwd2'
                       name='pwd2'
-                      placeholder='비밀번호를 재입력하세요'
-                      value={val.pwd2}
+                      placeholder='비밀번호를 재입력하세요'                  
                       onChange={handleChange}
                     />
                     <span className='err'>{err.pwd2}</span>
@@ -142,8 +151,7 @@ function Join(){
                       type="text" 
                       id='email'
                       name='email'
-                      placeholder='이메일 주소를 입력하세요'
-                      value={val.email}
+                      placeholder='이메일 주소를 입력하세요'         
                       onChange={handleChange}
                     />
                     <span className='err'>{err.email}</span>
@@ -161,11 +169,35 @@ function Join(){
                       row='10'
                       id='comments'
                       name='comments'
-                      placeholder='남기는 말을 적어주세요'
-                      value={val.comments}
+                      placeholder='남기는 말을 적어주세요2'                  
                       onChange={handleChange}
                     ></textarea>
                     <span className='err'>{err.comments}</span>
+                  </td>
+                </tr>
+
+                {/* gender */}
+                <tr>
+                  <th scope='row'>
+                    GENDER
+                  </th>
+                  <td>
+                    <label htmlFor='male'>Male</label>
+                    <input 
+                      type="radio" 
+                      id='male' 
+                      name='gender' 
+                      onChange = {handleCheck}
+                    />
+
+                    <label htmlFor='femal'>Female</label>
+                    <input 
+                      type="radio" 
+                      id='female' 
+                      name='gender' 
+                      onChange = {handleCheck} 
+                    />
+                    <span className='err'>{err.gender}</span>
                   </td>
                 </tr>
 
