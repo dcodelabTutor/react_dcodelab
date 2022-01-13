@@ -13,11 +13,12 @@
         font: bold 14px/1 'arial'; color: #555;
 
         &.btnSet {
-          text-align: center;
+          text-align: center;  border-right: none;
 
           input[type=reset], input[type=submit] {
             width: 150px; height: 32px; border: 1px solid #555;
             text-align: center; margin: 10px; cursor: pointer; transition: 0.5s;
+           
 
             &:hover {
               background: #555; color: #fff;
@@ -47,4 +48,45 @@
       font: 11px/1 '맑은 고딕'; color: hotpink;
     }
   }
+}
+
+@media screen and (max-width: $web){
+  .join .inner table td {
+    input[type=text], input[type=password], select {
+      width: 90%;  
+    }
+    textarea {
+      width: 90%; 
+    }
+   
+  }
+
+}
+
+@media screen and (max-width: $tablet){
+  .join .inner table th {
+    position: absolute; top: -99999px; opacity: 0;
+
+    &.btnSet {
+      position: relative;
+      top: 0px;
+      opacity: 1;
+    }
+  }
+
+  .join .inner table td {
+    input[type=text], input[type=password], select {
+      width: 100%;  
+    }
+    textarea {
+      width: 100%; 
+    }
+   
+  }
+  
+}
+
+@media screen and (max-width: $mobile){
+
+  
 }

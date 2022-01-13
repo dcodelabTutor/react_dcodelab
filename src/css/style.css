@@ -103,7 +103,7 @@ footer .inner p {
   text-align: center;
 }
 
-@media screen and (max-width: 1179px) {
+@media screen and (max-width: 1199px) {
   header .inner {
     width: 100%;
   }
@@ -139,12 +139,6 @@ figure {
   width: 1180px;
   min-height: 300px;
   margin: 0px auto;
-}
-
-#box {
-  width: 200px;
-  height: 200px;
-  background: hotpink;
 }
 
 .gallery .inner > section::after {
@@ -301,6 +295,7 @@ figure {
 }
 .join .inner table th.btnSet {
   text-align: center;
+  border-right: none;
 }
 .join .inner table th.btnSet input[type=reset], .join .inner table th.btnSet input[type=submit] {
   width: 150px;
@@ -338,6 +333,34 @@ figure {
 .join .inner .err {
   font: 11px/1 "맑은 고딕";
   color: hotpink;
+}
+
+@media screen and (max-width: 1199px) {
+  .join .inner table td input[type=text], .join .inner table td input[type=password], .join .inner table td select {
+    width: 90%;
+  }
+  .join .inner table td textarea {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 739px) {
+  .join .inner table th {
+    position: absolute;
+    top: -99999px;
+    opacity: 0;
+  }
+  .join .inner table th.btnSet {
+    position: relative;
+    top: 0px;
+    opacity: 1;
+  }
+
+  .join .inner table td input[type=text], .join .inner table td input[type=password], .join .inner table td select {
+    width: 100%;
+  }
+  .join .inner table td textarea {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

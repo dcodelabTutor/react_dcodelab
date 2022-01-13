@@ -51,7 +51,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 1179px){
+@media screen and (max-width: $web){
   header {
     .inner {
       width: 100%;
