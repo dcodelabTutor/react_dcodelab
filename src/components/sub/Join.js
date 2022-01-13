@@ -8,7 +8,8 @@ function Join(){
     email: '',
     comments: '',
     gender: '',
-    interests: ''
+    interests: '',
+    edu: ''
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
@@ -20,13 +21,17 @@ function Join(){
     setVal({...val, [name]: value});     
   }
 
-  const handleCheck = e => {
-    //해당 함수가 실행된 대상의 name값 변수에 저장
-    const {name} = e.target;
-    //이벤트 대상이 체크 유무를 boolean값으로 저장
-    const isCheck = e.target.checked;
-    //val state에 해당 네임을 키, boolean값을 value로 저장
+  const handleCheck = e => {    
+    const {name} = e.target;  
+    const isCheck = e.target.checked;   
     setVal({...val, [name]: isCheck});  
+  }
+
+  const handleSelect = e => {
+    const {name} = e.target;
+    //console.log(e.target.options);
+    const isSelected = e.target.options[e.target.selectedIndex].value;
+    setVal({...val, [name]: isSelected});
   }
 
   //submit이벤트 발생하면 실행되는 함수
@@ -64,6 +69,9 @@ function Join(){
     }
     if( !val.interests ){
       errs.interests='관심사를 하나이상 선택하세요.';
+    }
+    if( !val.edu ){
+      errs.edu='학력을 선택해주세요.'
     }
     return errs;
   }
@@ -236,6 +244,23 @@ function Join(){
                     />
 
                     <span className='err'>{err.interests}</span>
+                  </td>
+                </tr>
+
+                {/* education */}
+                <tr>
+                  <th scope='row'>
+                  <label htmlFor='edu'>EDUCATION</label>
+                  </th>
+                  <td>                    
+                    <select name="edu" id="edu" onChange={handleSelect}>
+                      <option value="">학력을 선택하세요</option>
+                      <option value="elementary-school">초등학교 졸업</option>
+                      <option value="middle-school">중학교 졸업</option>
+                      <option value="high-school">고등학교 졸업</option>
+                      <option value="college">대학교 졸업</option>
+                    </select>
+                    <span className='err'>{err.edu}</span>
                   </td>
                 </tr>
 
