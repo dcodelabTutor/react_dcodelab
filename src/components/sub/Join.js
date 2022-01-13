@@ -7,7 +7,8 @@ function Join(){
     pwd2 : '',
     email: '',
     comments: '',
-    gender: ''
+    gender: '',
+    interests: ''
   }
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
@@ -60,6 +61,9 @@ function Join(){
     }
     if( !val.gender ){
       errs.gender='성별을 선택하세요';
+    }
+    if( !val.interests ){
+      errs.interests='관심사를 하나이상 선택하세요.';
     }
     return errs;
   }
@@ -198,6 +202,40 @@ function Join(){
                       onChange = {handleCheck} 
                     />
                     <span className='err'>{err.gender}</span>
+                  </td>
+                </tr>
+
+                {/* interests */}
+                <tr>
+                  <th scope='row'>
+                    INTERESTS
+                  </th>
+                  <td>
+                    <label htmlFor='sport'>Sports</label>
+                    <input 
+                      type="checkbox" 
+                      id='sports' 
+                      name='interests' 
+                      onChange = {handleCheck}
+                    />
+
+                    <label htmlFor='music'>Music</label>
+                    <input 
+                      type="checkbox" 
+                      id='music' 
+                      name='interests' 
+                      onChange = {handleCheck} 
+                    />
+
+                    <label htmlFor='game'>Game</label>
+                    <input 
+                      type="checkbox" 
+                      id='game' 
+                      name='interests' 
+                      onChange = {handleCheck} 
+                    />
+
+                    <span className='err'>{err.interests}</span>
                   </td>
                 </tr>
 
