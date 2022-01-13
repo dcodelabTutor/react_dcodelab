@@ -95,7 +95,7 @@ function Join(){
 
         {success ? <div>회원가입을 축하합니다.</div> : null }
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <fieldset>
             <legend className='h'>회원가입 입력 폼 양식</legend>
 
@@ -266,7 +266,7 @@ function Join(){
 
                 {/* btn set */}
                 <tr>
-                  <th colSpan='2'>
+                  <th colSpan='2' className='btnSet'>
                     <input type="reset" value='CANCEL' />
                     <input type="submit" value='SEND' />
                   </th>
