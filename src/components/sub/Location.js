@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from "react";
 function Location(){ 
   const {kakao} = window; 
   const container = useRef(null);
+  const btnBranch = useRef(null);
   const [map, setMap] = useState(null);  
   const [index, setIndex] = useState(0); 
   const info = [
     {
-      title : "본점", 
+      title : "본점",  
       latlng : new kakao.maps.LatLng(37.48771318663092,126.75344867275281),
       imgSrc : process.env.PUBLIC_URL+"/img/marker1.png", 
       imgSize : new kakao.maps.Size(232, 99),
@@ -29,7 +30,7 @@ function Location(){
     }
   ];
 
-  const [mapInfo, setMapInfo] = useState(info);
+  const [mapInfo] = useState(info);
 
   useEffect(()=>{
     const options = { 
@@ -46,22 +47,21 @@ function Location(){
       image : new kakao.maps.MarkerImage(mapInfo[index].imgSrc, mapInfo[index].imgSize, mapInfo[index].imgPos)
     });
 
-    map.setCenter(mapInfo[index].latlng); 
+    map.setCenter(mapInfo[index].latlng);   
   
-    //지도 타입변경 패널 프레임에 생성
     const mapTypeControl = new kakao.maps.MapTypeControl();
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-    //휠로 줌 기능 활성화
-    map.setZoomable(true);
-    //마우스 드래그기능 활성화
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);  
+    map.setZoomable(true); 
     map.setDraggable(true);
-    
-    
-    const mapSet = ()=> map.setCenter(mapInfo[index].latlng);   
-    //윈도우 리사이즈시 마커 위치 중앙배치 
-    window.addEventListener('resize',mapSet);
 
-    //해당 컴포넌트가 사라질떄 기존 window에 등록된 이벤트 제거
+    //모든 버튼 초기화한 뒤, index state번째의 li요소만 활성화
+    for(const btn of btnBranch.current.children) btn.classList.remove('on');
+    btnBranch.current.children[index].classList.add('on');
+    
+    
+    const mapSet = ()=> map.setCenter(mapInfo[index].latlng);  
+    window.addEventListener('resize',mapSet);
+    
     return ()=> window.removeEventListener('resize',mapSet);
    
   },[index]); 
@@ -84,7 +84,7 @@ function Location(){
           }}>교통정보 끄기</li>
         </ul>
 
-        <ul className="branch">        
+        <ul className="branch" ref={btnBranch}>        
           <li onClick={()=>{          
             setIndex(0);
           }}>본점</li>

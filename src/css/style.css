@@ -284,6 +284,7 @@ figure {
 }
 .location .inner .branch li {
   color: #333;
+  cursor: pointer;
 }
 .location .inner .branch li.on {
   color: hotpink;

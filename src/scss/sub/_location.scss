@@ -5,7 +5,7 @@
     }
 
     .branch li {
-      color: #333;
+      color: #333; cursor: pointer;
 
       &.on {
         color: hotpink;
