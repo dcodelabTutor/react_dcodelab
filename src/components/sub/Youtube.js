@@ -5,10 +5,11 @@
   4. 해당 레이어팝업 안쪽에 데이터와, 순서관련 state값을 활용해서 세부 컨텐츠 출력
 */
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react/cjs/react.production.min';
 
 function Youtube(){
+  const frame = useRef(null);
   let [data, setData] = useState([]);
   let [isPop, setIsPop] = useState(false);
   let [index, setIndex] = useState(0);
@@ -25,10 +26,11 @@ function Youtube(){
       .then(json=>{    
         setData(json.data.items);        
       })
+      frame.current.classList.add('on');
   },[]);
 
   return (
-    <main className="youtube">
+    <main className="youtube" ref={frame}>
       <div className="inner">
         <h1><a href="#">Youtube</a></h1>
 

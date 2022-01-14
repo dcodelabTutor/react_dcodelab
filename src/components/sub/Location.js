@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 function Location(){ 
+  const frame = useRef(null);
   const {kakao} = window; 
   const container = useRef(null);
   const btnBranch = useRef(null);
@@ -36,6 +37,7 @@ function Location(){
   useEffect(()=>{
     console.log('map');
     console.log(index);
+    frame.current.classList.add('on');
     const options = { 
       center: mapInfo[index].latlng, 
       level: 3 
@@ -74,7 +76,7 @@ function Location(){
   },[index]); 
 
   return (
-    <main className='location'>
+    <main className='location' ref={frame}>
       <div className="inner">
         <h1>Location</h1>
       
