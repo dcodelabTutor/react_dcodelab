@@ -8,7 +8,7 @@ function Location(){
   const info = [
     {
       title : "본점", 
-      latlng : new kakao.maps.LatLng(37.5132313,127.0594368),
+      latlng : new kakao.maps.LatLng(37.48771318663092,126.75344867275281),
       imgSrc : process.env.PUBLIC_URL+"/img/marker1.png", 
       imgSize : new kakao.maps.Size(232, 99),
       imgPos : {offset: new kakao.maps.Point(116, 99)}
@@ -46,9 +46,18 @@ function Location(){
       image : new kakao.maps.MarkerImage(mapInfo[index].imgSrc, mapInfo[index].imgSize, mapInfo[index].imgPos)
     });
 
-    map.setCenter(mapInfo[index].latlng);     
-    const mapSet = ()=> map.setCenter(mapInfo[index].latlng); 
-
+    map.setCenter(mapInfo[index].latlng); 
+  
+    //지도 타입변경 패널 프레임에 생성
+    const mapTypeControl = new kakao.maps.MapTypeControl();
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+    //휠로 줌 기능 활성화
+    map.setZoomable(true);
+    //마우스 드래그기능 활성화
+    map.setDraggable(true);
+    
+    
+    const mapSet = ()=> map.setCenter(mapInfo[index].latlng);   
     //윈도우 리사이즈시 마커 위치 중앙배치 
     window.addEventListener('resize',mapSet);
 

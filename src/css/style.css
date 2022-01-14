@@ -282,6 +282,12 @@ figure {
   height: 500px;
   background: #000;
 }
+.location .inner .branch li {
+  color: #333;
+}
+.location .inner .branch li.on {
+  color: hotpink;
+}
 
 .join .inner table {
   width: 100%;
