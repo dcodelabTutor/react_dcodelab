@@ -44,8 +44,8 @@ function Location(){
     //마커 인스턴스 호출 (호출시 mapInfo라는 state에서 정보값 호출)
     new kakao.maps.Marker({
       map: map, 
-      position: mapInfo.latlng, 
-      title : mapInfo.title,
+      position: mapInfo[0].latlng, 
+      title : mapInfo[0].title,
       image : new kakao.maps.MarkerImage(mapInfo[0].imgSrc, mapInfo[0].imgSize, mapInfo[0].imgPos)
     });
   },[]);
