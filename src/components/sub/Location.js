@@ -6,6 +6,8 @@ function Location(){
   const btnBranch = useRef(null);
   const [map, setMap] = useState(null);  
   const [index, setIndex] = useState(0); 
+  //toggle값에 따라 트래픽보기 버튼 활성화, 비활성화
+  const [toggle, setToggle] = useState(false);
   const info = [
     {
       title : "본점",  
@@ -66,7 +68,6 @@ function Location(){
    
   },[index]); 
 
-
   return (
     <main className='location'>
       <div className="inner">
@@ -75,13 +76,22 @@ function Location(){
         <div id="map" ref={container}></div>
 
         <ul className="traffic">
-          <li onClick={()=>{           
-            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
-          }}>교통정보 보기</li>
-
-          <li onClick={()=>{
-            map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);  
-          }}>교통정보 끄기</li>
+          {
+            //토글값이 true일때 끄기버튼 활성화
+            toggle ? 
+              <li onClick={()=>{
+                map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);  
+                //현재 토글의 boolean값을 반전
+                setToggle(!toggle);
+              }}>교통정보 끄기</li>
+            //토글값이 false일때 켜기버튼 활성화
+            :            
+              <li onClick={()=>{           
+                map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+                //현재 토글의 boolean값을 반전
+                setToggle(!toggle);
+              }}>교통정보 보기</li>
+          } 
         </ul>
 
         <ul className="branch" ref={btnBranch}>        
