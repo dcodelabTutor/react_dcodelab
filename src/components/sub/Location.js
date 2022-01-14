@@ -80,32 +80,24 @@ function Location(){
             //토글값이 true일때 끄기버튼 활성화
             toggle ? 
               <li onClick={()=>{
-                map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);  
-                //현재 토글의 boolean값을 반전
+                map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
                 setToggle(!toggle);
-              }}>교통정보 끄기</li>
-            //토글값이 false일때 켜기버튼 활성화
+              }}>교통정보 끄기</li>       
             :            
               <li onClick={()=>{           
                 map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
-                //현재 토글의 boolean값을 반전
                 setToggle(!toggle);
               }}>교통정보 보기</li>
           } 
         </ul>
 
-        <ul className="branch" ref={btnBranch}>        
-          <li onClick={()=>{          
-            setIndex(0);
-          }}>본점</li>
-
-          <li onClick={()=>{          
-            setIndex(1)
-          }}>지점1</li>
-
-          <li onClick={()=>{       
-            setIndex(2)
-          }}>지점2</li>
+        <ul className="branch" ref={btnBranch}> 
+        {    
+          //mapInfo갯수만큼 버튼 생성후 setIndex함수 연결  
+          mapInfo.map((data,index)=>{
+            return  <li key={index} onClick={()=>setIndex(index)}>{data.title}</li>
+          })          
+        }  
         </ul>
       </div>
     </main>
