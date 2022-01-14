@@ -6,7 +6,6 @@ function Location(){
   const btnBranch = useRef(null);
   const [map, setMap] = useState(null);  
   const [index, setIndex] = useState(0); 
-  //toggle값에 따라 트래픽보기 버튼 활성화, 비활성화
   const [toggle, setToggle] = useState(false);
   const info = [
     {
@@ -15,7 +14,7 @@ function Location(){
       imgSrc : process.env.PUBLIC_URL+"/img/marker1.png", 
       imgSize : new kakao.maps.Size(232, 99),
       imgPos : {offset: new kakao.maps.Point(116, 99)}
-    },
+    },  
     {
       title : "지점1", 
       latlng : new kakao.maps.LatLng(37.507099899564444,126.75639338893572),
@@ -35,6 +34,8 @@ function Location(){
   const [mapInfo] = useState(info);
 
   useEffect(()=>{
+    console.log('map');
+    console.log(index);
     const options = { 
       center: mapInfo[index].latlng, 
       level: 3 
@@ -56,7 +57,6 @@ function Location(){
     map.setZoomable(true); 
     map.setDraggable(true);
 
-    //모든 버튼 초기화한 뒤, index state번째의 li요소만 활성화
     for(const btn of btnBranch.current.children) btn.classList.remove('on');
     btnBranch.current.children[index].classList.add('on');
     
@@ -64,7 +64,12 @@ function Location(){
     const mapSet = ()=> map.setCenter(mapInfo[index].latlng);  
     window.addEventListener('resize',mapSet);
     
-    return ()=> window.removeEventListener('resize',mapSet);
+    return ()=>{
+      window.removeEventListener('resize',mapSet);
+      //컴포넌트가 사라질때마다 container안쪽의 기존 지도내용은 삭제
+      //마우스휠 이벤트로 zoom 설정시 밑에쪽에 기존 지도 표시문제 해결
+      container.current.innerHTML='';
+    } 
    
   },[index]); 
 
@@ -76,8 +81,7 @@ function Location(){
         <div id="map" ref={container}></div>
 
         <ul className="traffic">
-          {
-            //토글값이 true일때 끄기버튼 활성화
+          { 
             toggle ? 
               <li onClick={()=>{
                 map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
@@ -92,8 +96,7 @@ function Location(){
         </ul>
 
         <ul className="branch" ref={btnBranch}> 
-        {    
-          //mapInfo갯수만큼 버튼 생성후 setIndex함수 연결  
+        {  
           mapInfo.map((data,index)=>{
             return  <li key={index} onClick={()=>setIndex(index)}>{data.title}</li>
           })          
