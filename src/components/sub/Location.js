@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from "react";
 function Location(){ 
   const {kakao} = window; 
   const container = useRef(null);
-  const [map, setMap] = useState(null);
-  //순서값을 index스테이트에 넣어서 관리
+  const [map, setMap] = useState(null);  
   const [index, setIndex] = useState(0); 
   const info = [
     {
@@ -34,7 +33,7 @@ function Location(){
 
   useEffect(()=>{
     const options = { 
-      center: new kakao.maps.LatLng(37.5132313,127.0594368), 
+      center: mapInfo[index].latlng, 
       level: 3 
     }  
     const map = new kakao.maps.Map(container.current, options);
@@ -47,8 +46,16 @@ function Location(){
       image : new kakao.maps.MarkerImage(mapInfo[index].imgSrc, mapInfo[index].imgSize, mapInfo[index].imgPos)
     });
 
-    map.setCenter(mapInfo[index].latlng);
-  },[index]); //의존성에 index스테이트를 추가해 추후 순서값이 바뀔때마다 지도 다시 렌더링
+    map.setCenter(mapInfo[index].latlng);     
+    const mapSet = ()=> map.setCenter(mapInfo[index].latlng); 
+
+    //윈도우 리사이즈시 마커 위치 중앙배치 
+    window.addEventListener('resize',mapSet);
+
+    //해당 컴포넌트가 사라질떄 기존 window에 등록된 이벤트 제거
+    return ()=> window.removeEventListener('resize',mapSet);
+   
+  },[index]); 
 
 
   return (
@@ -68,8 +75,7 @@ function Location(){
           }}>교통정보 끄기</li>
         </ul>
 
-        <ul className="branch">  
-          {/* 지점 버튼 클릭시 index state변경 */}
+        <ul className="branch">        
           <li onClick={()=>{          
             setIndex(0);
           }}>본점</li>
