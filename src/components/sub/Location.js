@@ -30,7 +30,7 @@ function Location(){
     }
   ];
 
-  const [mapInfo, setMapInfo] = useState(info[0]);
+  const [mapInfo, setMapInfo] = useState(info);
 
   useEffect(()=>{
     const options = { 
@@ -46,7 +46,7 @@ function Location(){
       map: map, 
       position: mapInfo.latlng, 
       title : mapInfo.title,
-      image : new kakao.maps.MarkerImage(mapInfo.imgSrc, mapInfo.imgSize, mapInfo.imgPos)
+      image : new kakao.maps.MarkerImage(mapInfo[0].imgSrc, mapInfo[0].imgSize, mapInfo[0].imgPos)
     });
   },[]);
 
@@ -65,6 +65,21 @@ function Location(){
           <li onClick={()=>{
             map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);  
           }}>교통정보 끄기</li>
+        </ul>
+
+        <ul className="branch">
+          {/* 각 브랜치 버튼 클릭시 mapInfo state에서 정보값 불러와 지도 위치 변경 */}
+          <li onClick={()=>{
+            map.setCenter(mapInfo[0].latlng);
+          }}>본점</li>
+
+          <li onClick={()=>{
+            map.setCenter(mapInfo[1].latlng);
+          }}>지점1</li>
+
+          <li onClick={()=>{
+            map.setCenter(mapInfo[2].latlng);
+          }}>지점2</li>
         </ul>
       </div>
     </main>
