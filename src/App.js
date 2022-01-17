@@ -29,23 +29,31 @@ function App() {
   //버튼 클릭할때마다 변경될 순서값을 담을 state 추가
   const [index, setIndex] = useState(0);
 
-  const getPos = ()=>{
+  const getIndex = index=>{
+    setIndex(index);
+  }
+
+  const handleResize = ()=>{
     const secs = main.current.querySelectorAll('.myScroll');
     let arr = [];
     for(let sec of secs) arr.push(sec.offsetTop);
-    pos.current = arr;
-    console.log(pos.current);
+    pos.current = arr; 
   }
 
-  useEffect(()=>{  
-    getPos();
-    window.addEventListener('resize', getPos);
+  useEffect(()=>{     
+    handleResize();    
+    window.addEventListener('resize', handleResize);
+
+    new Anime(window,{
+      prop: 'scroll',
+      value: pos.current[index],
+      duration: 500
+    })
 
     return ()=>{  
-      window.removeEventListener('resize', getPos);  
+      window.removeEventListener('resize', handleResize);  
     }
-  },[]);
-
+  },[index]);
 
   return (
     <div className="App">   
@@ -57,7 +65,7 @@ function App() {
             <News />
             <Intro />  
             <Info />
-            <Btns />
+            <Btns getIndex={getIndex} />
           </div>
         </Route> 
         
