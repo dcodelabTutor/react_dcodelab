@@ -1,6 +1,6 @@
 function Visual(){
   return (
-    <figure></figure>
+    <figure className='myScroll'></figure>
   )
 }
 
