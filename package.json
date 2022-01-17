@@ -1,8 +1,8 @@
 {
-  "hompage": "https://reactam.github.io/react_pf_basic",
+  "homepage": "https://reactam.github.io/react_pf_basic",
   "name": "react_pf_basic",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

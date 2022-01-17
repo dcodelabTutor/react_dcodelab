@@ -1,6 +1,6 @@
 import './css/style.css';
 import Anime from './class/anime.js';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 //import common component
 import Header from './components/common/Header.js';
@@ -37,32 +37,19 @@ function App() {
   }
 
   return (
-    <div className="App">    
-      <Header />
-
-      <Route exact path="/">
-        <Visual />
-        {/* 해당 버튼 클릭시 useRef로 참조된 박스 이동 */}
-        <button onClick={()=>{
-          new Anime(box.current,{
-            prop: 'margin-left',
-            value: 600,
-            duration: 500
-          })
-        }}>박스이동</button>
-
-        {/* 해당 버튼 클릭시 window의 스크롤 이동 */}
-        <button onClick={()=>{
-          new Anime(window,{
-            prop: 'scroll',
-            value: 100,
-            duration: 1000
-          })
-        }}>스크롤이동</button>
-
-        <div id="box" ref={box}></div>
-        <Info />
-      </Route>      
+    <div className="App"> 
+      <Switch>
+        <Route exact path="/">
+          <Header type={'main'} />
+          <Visual />    
+          <Info />
+        </Route> 
+        
+        <Route path='/'>
+          <Header type={'sub'} />
+        </Route>
+      </Switch>
+      
 
       <Route  path="/department" component={Department}></Route>
       <Route  path="/community" component={Community}></Route>

@@ -70,6 +70,17 @@ header .inner #gnb li a {
   color: #fff;
 }
 
+header.main {
+  background: #fff;
+}
+header.main #gnb li a {
+  color: #555;
+}
+
+header.sub {
+  background: #111;
+}
+
 main {
   padding: 100px 0px;
   transition: 1s;
