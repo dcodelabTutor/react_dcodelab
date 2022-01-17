@@ -183,10 +183,11 @@ figure {
   background: #fff;
   margin-bottom: 20px;
   cursor: pointer;
+  transition: 0.5s;
 }
 #btns li.on {
   height: 80px;
-  color: #111;
+  background: #111;
 }
 
 .gallery .inner > section::after {

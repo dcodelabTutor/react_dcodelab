@@ -24,25 +24,39 @@ import Join from './components/sub/Join.js';
 import { useEffect, useRef, useState } from 'react';
 
 function App() {
-  const main = useRef(null); 
-  let pos = useRef([]);
-  //버튼 클릭할때마다 변경될 순서값을 담을 state 추가
-  const [index, setIndex] = useState(0);
+  /*
+  const main = useRef(null);   
+  let pos = useRef([]);  
+  const [index, setIndex] = useState(0);  
 
   const getIndex = index=>{
     setIndex(index);
   }
 
-  const handleResize = ()=>{
+  const handleResize = ()=>{   
     const secs = main.current.querySelectorAll('.myScroll');
     let arr = [];
     for(let sec of secs) arr.push(sec.offsetTop);
-    pos.current = arr; 
+    pos.current = arr;   
+  }
+ 
+  const handleScroll = ()=>{   
+    let scroll = window.scrollY;   
+    const btns = main.current.querySelectorAll('#btns li');   
+   
+    pos.current.map((pos,index)=>{
+      if(scroll>=pos){
+        for(const btn of btns) btn.classList.remove('on');
+        btns[index].classList.add('on');    
+      }
+    })   
+   
   }
 
   useEffect(()=>{     
     handleResize();    
     window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
 
     new Anime(window,{
       prop: 'scroll',
@@ -52,20 +66,22 @@ function App() {
 
     return ()=>{  
       window.removeEventListener('resize', handleResize);  
+      window.removeEventListener('scroll', handleScroll);
     }
   },[index]);
+  */
 
   return (
     <div className="App">   
       <Switch>
         <Route exact path="/">
           <Header type={'main'} />
-          <div ref={main}>
+          <div>
             <Visual />  
             <News />
             <Intro />  
             <Info />
-            <Btns getIndex={getIndex} />
+            {/* <Btns getIndex={getIndex} /> */}
           </div>
         </Route> 
         
