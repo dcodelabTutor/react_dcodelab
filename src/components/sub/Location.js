@@ -35,6 +35,7 @@ function Location(){
   const [mapInfo] = useState(info);
 
   useEffect(()=>{
+    container.current.innerHTML='';
     console.log('map');
     console.log(index);
     frame.current.classList.add('on');
@@ -70,7 +71,7 @@ function Location(){
       window.removeEventListener('resize',mapSet);
       //컴포넌트가 사라질때마다 container안쪽의 기존 지도내용은 삭제
       //마우스휠 이벤트로 zoom 설정시 밑에쪽에 기존 지도 표시문제 해결
-      container.current.innerHTML='';
+      //container.current.innerHTML='';
     } 
    
   },[index]); 

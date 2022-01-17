@@ -38,6 +38,7 @@ function App() {
 
   return (
     <div className="App"> 
+      {/* Switch-같은 경로의 라우터가 복수개 연결되었을떄 상단의 라우터만 연결 처리 */}
       <Switch>
         <Route exact path="/">
           <Header type={'main'} />
