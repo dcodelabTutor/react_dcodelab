@@ -40,7 +40,12 @@ function App() {
   useEffect(()=>{  
     //처음 컴포넌트 생성시 배열값 생성
     getPos();
-    return ()=>{    
+
+    //브라우저가 리사이즈 될 때마다 getPos호출해서 배열값 갱신
+    window.addEventListener('resize', getPos);
+
+    return ()=>{  
+      window.removeEventListener('resize', getPos);  
     }
   },[]);
 
