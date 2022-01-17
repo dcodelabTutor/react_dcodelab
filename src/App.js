@@ -8,6 +8,8 @@ import Footer from './components/common/Footer.js';
 
 //import main component
 import Visual from './components/main/Visual.js';
+import News from './components/main/News.js';
+import Intro from './components/main/Intro.js';
 import Info from './components/main/Info.js';
 
 //import sub component
@@ -42,7 +44,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Header type={'main'} />
-          <Visual />    
+          <Visual />  
+          <News />
+          <Intro />  
           <Info />
         </Route> 
         
