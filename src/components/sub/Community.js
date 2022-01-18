@@ -7,7 +7,7 @@ function Community() {
   const [postList, setPostlist] = useState([]);
 
   const insertPost = ()=>{
-    setPostlist([...postList, post])     
+    setPostlist([post,...postList ])     
   }
 
   const deletePost = delIndex =>{
