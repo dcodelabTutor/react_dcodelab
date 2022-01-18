@@ -21,15 +21,13 @@ function App() {
     <div className="App">   
       <Switch>
         <Route exact path="/">
-          
           <Main />
         </Route> 
         
         <Route path='/'>
           <Header type={'sub'} />
         </Route>
-      </Switch>
-      
+      </Switch>      
 
       <Route  path="/department" component={Department}></Route>
       <Route  path="/community" component={Community}></Route>
