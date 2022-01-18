@@ -1,42 +1,47 @@
-import axios from "axios";
-import {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from 'react'
 
-function Community(){
+function Community() {
   const frame = useRef(null);
-  
-  let [posts, setPosts] = useState([]);
-  const path= process.env.PUBLIC_URL;
-  const url = `${path}/db/community.json`;
+  const input = useRef(null);
+  const [post, setPost] = useState('');
+  const [postList, setPostlist] = useState([]);
+
+  const insertPost = ()=>{
+    setPostlist([...postList, post])     
+  }
 
   useEffect(()=>{
-    axios
-      .get(url)
-      .then(json=>{
-        console.log(json.data.data);
-        setPosts(json.data.data);
-      })
-
-      frame.current.classList.add('on');
-  },[]);
+    frame.current.classList.add('on');
+    setPost('');
+    console.log(postList);
+  },[postList])
 
   return (
     <main ref={frame}>
       <div className="inner">
-        <h1><a href="#">Community2</a></h1>
-        {
-          posts.map((data, index)=>{
-            return (
-              <article key={index}>
-                <h1>{data.title}</h1>
-                <span>{data.writer}</span>
-                <em>{data.date}</em>
-              </article>
-            )
-          })
-        }          
+        <h1>Community</h1>
+
+        <section className="inputBox">
+          <input 
+            ref={input}
+            type="text" 
+            value= {post}
+            onChange={e=> setPost(e.target.value)}
+          />
+          <button
+            onClick ={insertPost}
+          >save
+          </button>
+        </section>
+
+        <section className="showList">
+          
+        </section>
       </div>
     </main>
   )
 }
 
 export default Community;
+
+
