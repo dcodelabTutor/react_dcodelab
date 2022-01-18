@@ -21,7 +21,7 @@ function Community() {
   },[postList])
 
   return (
-    <main ref={frame}>
+    <main ref={frame} className='community content'>
       <div className="inner">
         <h1>Community</h1>
 
@@ -41,7 +41,18 @@ function Community() {
         </section>
 
         <section className="showList">
-
+          {
+            postList.map((post, index)=>{
+              return (
+                <article
+                  key={index}
+                >
+                  <p>{post}</p>
+                  <span>del</span>
+                </article>
+              )
+            })
+          }
         </section>
       </div>
     </main>
