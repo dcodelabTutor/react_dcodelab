@@ -1,18 +1,12 @@
 .community {
   .inner {
-    .showList {
-      article {
-        width: 100%;
-        border: 1px solid #aaa;
-        margin: 20px 0px;
-        padding: 20px;
+    .inputBox {
+      width: 100%; padding: 50px; margin-bottom: 50px; border: 1px solid #aaa;
+    } 
 
-        span {
-          cursor: pointer;
-          font-size: 12px; 
-          color: hotpink;
-        }
-      }
+    .showBox {
+      width: 100%; padding: 50px; border: 1px solid #aaa;
     }
+   
   }
 }
