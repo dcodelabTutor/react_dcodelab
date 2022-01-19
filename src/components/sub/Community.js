@@ -7,10 +7,12 @@ function Community() {
   const showBox = useRef(null);
 
   const [posts, setPosts] = useState([
-    {title: 'Hello0', content: 'Here comes description in detail.'}  
+    {title: 'Hello0', content: 'Here comes description in detail.'},
+    {title: 'Hello1', content: 'Here comes description in detail.'},  
+    {title: 'Hello2', content: 'Here comes description in detail.'},  
+    {title: 'Hello3', content: 'Here comes description in detail.'}    
   ]);
 
-  //기존 posts배열에 새로운 post추가 함수 
   const createPost=()=>{
     setPosts([
       {
@@ -23,13 +25,32 @@ function Community() {
     input.current.value='';
     textarea.current.value='';
   }
-
-  //인수로 받은 순번의 포스트만 삭제하는 함수
+  
   const deletePost=index=>{
     setPosts(
-      // filter는 기본 배열 받아서 조건식을 추가해 특정조건이 성립하는 데이터만 다시 새롭게 반환하는 함수
-      posts.filter((_, postIndex)=> postIndex === index)
+      posts.filter((_, postIndex)=> postIndex !== index)
     )  
+  }
+
+  //출력모드에서 수정모드로 변경함수
+  const enableUpdate=index=>{
+    setPosts(
+      posts.map((post, postIndex)=>{
+        if(postIndex===index) post.enableUpdate=true;
+        return post;
+      })
+    )
+    console.log(posts);
+  }
+
+  //수정모드에서 다시 출력모드로 변경함수
+  const disableUpdate=index=>{
+
+  }
+
+  //실제 포스트를 수정해서 업데이트하는 함수 
+  const updatePost=index=>{
+
   }
 
   useEffect(()=>{
@@ -49,7 +70,7 @@ function Community() {
           /><br />
 
           <textarea 
-            cols="30" rows="10" 
+            cols="30" rows="5" 
             placeholder='본문을 입력하세요' 
             ref= {textarea}
           >
@@ -69,11 +90,33 @@ function Community() {
               return (
                 <article key={index}>
                   <div className='post'>
-                    <h2>{post.title}</h2>
-                    <p>{post.content}</p>
+                    {
+                      post.enableUpdate 
+                      ?  
+                      <>   
+                        <input type="text" defaultValue={post.title} />
+                        <textarea defaultValue={post.content}></textarea>   
+                      </> 
+                      :
+                      <>
+                        <h2>{post.title}</h2>
+                        <p>{post.content}</p>
+                      </>
+                    }
                   </div>
                   <ul className="btns">
-                    <li>수정</li>
+                    {
+                      post.enableUpdate
+                      ?
+                      <>
+                        <li onClick={()=>updatePost(index)}>입력</li>
+                        <li onClick={()=>disableUpdate(index)}>취소</li>
+                      </>
+                        
+                      :                      
+                        <li onClick={()=>enableUpdate(index)}>수정</li>
+                      
+                    }
                     <li onClick={()=>deletePost(index)}>삭제</li>
                   </ul>
                 </article>
