@@ -56,7 +56,19 @@ function Community() {
 
   //실제 포스트를 수정해서 업데이트하는 함수 
   const updatePost=index=>{
-
+    setPosts(
+      posts.map((post, postIndex)=>{
+        if(postIndex === index){
+          const article = showBox.current.children[index];
+          const input = article.querySelector('input');
+          const textarea = article.querySelector('textarea');
+          post.title = input.value;
+          post.content = textarea.value;
+          post.enableUpdate = false;
+        }
+        return post;
+      })
+    )
   }
 
   useEffect(()=>{
@@ -101,7 +113,7 @@ function Community() {
                     // 수정모드
                     <>
                       <div className="post">
-                        <input type="text" defaultValue={post.title} />
+                        <input type="text" defaultValue={post.title} /><br />
                         <textarea defaultValue={post.content}></textarea>   
                       </div>
 
