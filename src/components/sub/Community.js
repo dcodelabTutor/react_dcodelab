@@ -10,6 +10,19 @@ function Community() {
     {title: 'Hello', content: 'Here comes description in detail.'}
   ]);
 
+  const createPost=()=>{
+    setPosts([
+      {
+        title: input.current.value,
+        content: textarea.current.value
+      }
+      ,...posts
+    ]);
+
+    input.current.value='';
+    textarea.current.value='';
+  }
+
   useEffect(()=>{
     frame.current.classList.add('on');
   },[]);
@@ -20,13 +33,25 @@ function Community() {
         <h1>Community</h1>
 
         <section className="inputBox">
-          <input type="text" placeholder='제목을 입력하세요' ref={input} /><br />
-          <textarea cols="30" rows="10" placeholder='본문을 입력하세요' ref={textarea}></textarea><br />
+          <input 
+            type="text" 
+            placeholder='제목을 입력하세요' 
+            ref={input} 
+          /><br />
+
+          <textarea 
+            cols="30" rows="10" 
+            placeholder='본문을 입력하세요' 
+            ref= {textarea}
+          >
+          </textarea><br />
+
           <button onClick={()=>{
             input.current.value='';
             textarea.current.value='';
           }}>cancel</button>
-          <button>create</button>
+
+          <button onClick={createPost}>create</button>
         </section>
 
         <section className="showBox" ref={showBox}>
