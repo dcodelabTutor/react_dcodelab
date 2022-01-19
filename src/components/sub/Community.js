@@ -45,7 +45,13 @@ function Community() {
 
   //수정모드에서 다시 출력모드로 변경함수
   const disableUpdate=index=>{
-
+    setPosts(
+      posts.map((post, postIndex)=>{
+        if(postIndex===index) post.enableUpdate=false;
+        return post;
+      })
+    )
+    console.log(posts);
   }
 
   //실제 포스트를 수정해서 업데이트하는 함수 
