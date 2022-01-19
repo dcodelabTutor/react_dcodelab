@@ -16,6 +16,10 @@ function Community() {
   ]);
 
   const createPost=()=>{
+    if(!input.current.value || !textarea.current.value){
+      alert('제목과 본문을 입력하세요');
+      return;
+    }
     setPosts([
       {
         title: input.current.value,
@@ -33,8 +37,7 @@ function Community() {
       posts.filter((_, postIndex)=> postIndex !== index)
     )  
   }
-
-  //출력모드에서 수정모드로 변경함수
+ 
   const enableUpdate=index=>{
     setPosts(
       posts.map((post, postIndex)=>{
@@ -44,8 +47,7 @@ function Community() {
     )
     console.log(posts);
   }
-
-  //수정모드에서 다시 출력모드로 변경함수
+ 
   const disableUpdate=index=>{
     setPosts(
       posts.map((post, postIndex)=>{
@@ -56,16 +58,14 @@ function Community() {
     console.log(posts);
   }
 
-  //실제 포스트를 수정해서 업데이트하는 함수 
   const updatePost=index=>{
+    if(!updateInput.current.value || !updateTextarea.current.value){
+      alert('수정할 제목과 본문을 모두 입력하세요.');
+      return;
+    }
     setPosts(
       posts.map((post, postIndex)=>{
-        if(postIndex === index){
-          const article = showBox.current.children[index];
-          //const input = article.querySelector('input');
-          //const textarea = article.querySelector('textarea');
-          //post.title = input.value;
-          //post.content = textarea.value;
+        if(postIndex === index){       
           post.title = updateInput.current.value;
           post.content = updateTextarea.current.value;
           post.enableUpdate = false;
