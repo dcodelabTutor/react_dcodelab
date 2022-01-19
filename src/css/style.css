@@ -224,18 +224,43 @@ figure {
 }
 .community .inner .showBox article {
   width: 100%;
-  padding: 20px;
+  padding: 30px 40px;
   background: #fff;
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
 }
-.community .inner .showBox article h2 {
+.community .inner .showBox article .post {
+  width: 70%;
+}
+.community .inner .showBox article .post h2 {
   font: bold 20px/1 "arial";
   color: #555;
   margin-bottom: 5px;
 }
-.community .inner .showBox article p {
+.community .inner .showBox article .post p {
   font: 12px/1.2 "arial";
   color: #777;
+}
+.community .inner .showBox article .btns {
+  display: inline-flex;
+  justify-content: center;
+  font-size: 0;
+  align-items: center;
+}
+.community .inner .showBox article .btns li {
+  margin: 5px;
+  border: none;
+  background: none;
+  display: inline-block;
+  font: 12px/1 "arial";
+  color: orange;
+  cursor: pointer;
+}
+.community .inner .showBox article .btns li:nth-of-type(2) {
+  color: red;
 }
 
 .gallery .inner > section::after {

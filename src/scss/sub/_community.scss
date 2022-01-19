@@ -19,14 +19,35 @@
       width: 100%; padding: 50px; border: 1px solid #aaa;
 
       article {
-        width: 100%; padding: 20px; background: #fff; margin-bottom: 20px;
+        width: 100%; padding: 30px 40px; background: #fff; margin-bottom: 20px;        
+        display: flex; flex-wrap: wrap; 
+        justify-content: space-between; align-content: center;
 
-        h2 {
-          font: bold 20px/1 'arial'; color: #555; margin-bottom: 5px;
+        .post {
+          width: 70%;          
+
+          h2 {
+            font: bold 20px/1 'arial'; color: #555; margin-bottom: 5px;
+          }
+          p {
+            font: 12px/1.2 'arial'; color: #777;
+          }
         }
-        p {
-          font: 12px/1.2 'arial'; color: #777;
+
+        .btns {
+          display: inline-flex; justify-content: center;
+          font-size: 0; align-items: center;
+
+          li {
+            margin: 5px; border: none; background: none; display: inline-block;
+            font: 12px/1 'arial'; color: orange; cursor: pointer;
+
+            &:nth-of-type(2) {
+              color: red;
+            }
+          }
         }
+        
       }
     }
    
