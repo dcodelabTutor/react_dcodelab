@@ -23,7 +23,7 @@ function Community() {
     }
   }
   const [posts, setPosts]= useState(getLocalItems);
- 
+
 
   const createPost=()=>{
     if(!input.current.value || !textarea.current.value){

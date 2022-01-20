@@ -1,19 +1,28 @@
+import { useEffect, useState } from "react/cjs/react.development";
+
 function News(){
   
   const getLocalItems=()=>{
     let data = localStorage.getItem('posts');
-    
+
     if(data){
       let result = JSON.parse(data);
       result = result.splice(0,6);
       return result;
     }else{
-      return [];
+      return [
+        {title: 'Hello0', content: 'Here comes description in detail.'},
+        {title: 'Hello1', content: 'Here comes description in detail.'},  
+        {title: 'Hello2', content: 'Here comes description in detail.'},  
+        {title: 'Hello3', content: 'Here comes description in detail.'}    
+      ];
     }
   }
+  const [posts]= useState(getLocalItems);
 
-  const posts = getLocalItems();
-  console.log(posts);
+  useEffect(()=>{
+    localStorage.setItem('posts', JSON.stringify(posts));
+  },[posts])
         
   return (
     <section id='news' className='myScroll'>
