@@ -7,13 +7,25 @@ function Community() {
   const updateInput = useRef(null);
   const updateTextarea = useRef(null);
   const showBox = useRef(null);
+ 
+  const getLocalItems=()=>{
+    let data = localStorage.getItem('posts');
 
+    if(data){
+      return JSON.parse(data);
+    }else{
+      return [];
+    }
+  }
+  const [posts, setPosts]= useState(getLocalItems);
+  /*
   const [posts, setPosts] = useState([
     {title: 'Hello0', content: 'Here comes description in detail.'},
     {title: 'Hello1', content: 'Here comes description in detail.'},  
     {title: 'Hello2', content: 'Here comes description in detail.'},  
     {title: 'Hello3', content: 'Here comes description in detail.'}    
   ]);
+  */
 
   const createPost=()=>{
     if(!input.current.value || !textarea.current.value){
@@ -37,17 +49,16 @@ function Community() {
       posts.filter((_, postIndex)=> postIndex !== index)
     )  
   }
- 
+
   const enableUpdate=index=>{
     setPosts(
       posts.map((post, postIndex)=>{
         if(postIndex===index) post.enableUpdate=true;
         return post;
       })
-    )
-    console.log(posts);
+    )  
   }
- 
+
   const disableUpdate=index=>{
     setPosts(
       posts.map((post, postIndex)=>{
@@ -55,7 +66,6 @@ function Community() {
         return post;
       })
     )
-    console.log(posts);
   }
 
   const updatePost=index=>{
@@ -76,8 +86,9 @@ function Community() {
   }
 
   useEffect(()=>{
+    localStorage.setItem('posts', JSON.stringify(posts));
     frame.current.classList.add('on');
-  },[]);
+  },[posts]);
 
   return (
     <main ref={frame} className='community content'>
