@@ -4,7 +4,9 @@ function News(){
     let data = localStorage.getItem('posts');
     
     if(data){
-      return JSON.parse(data);
+      let result = JSON.parse(data);
+      result = result.splice(0,6);
+      return result;
     }else{
       return [];
     }
