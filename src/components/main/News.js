@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react/cjs/react.development";
 
 function News(){
-  
+
+  const basic = [        
+    {title: 'Hello1', content: 'Here comes description in detail.'},  
+    {title: 'Hello2', content: 'Here comes description in detail.'},  
+    {title: 'Hello3', content: 'Here comes description in detail.'},  
+    {title: 'Hello4', content: 'Here comes description in detail.'},  
+    {title: 'Hello5', content: 'Here comes description in detail.'},  
+    {title: 'Hello6', content: 'Here comes description in detail.'}      
+  ];  
+
+
   const getLocalItems=()=>{
     let data = localStorage.getItem('posts');
 
     if(data){
-      let result = JSON.parse(data);
-      result = result.splice(0,6);
-      return result;
+      return JSON.parse(data);
     }else{
-      return [
-        {title: 'Hello0', content: 'Here comes description in detail.'},
-        {title: 'Hello1', content: 'Here comes description in detail.'},  
-        {title: 'Hello2', content: 'Here comes description in detail.'},  
-        {title: 'Hello3', content: 'Here comes description in detail.'}    
-      ];
+      return basic;
     }
   }
-  const [posts]= useState(getLocalItems);
+  const [posts]= useState(getLocalItems); 
+  const [conut, setCount] = useState(0);
+
 
   useEffect(()=>{
-    localStorage.setItem('posts', JSON.stringify(posts));
-  },[posts])
+    localStorage.setItem('posts', JSON.stringify(posts));   
+  },[])
         
   return (
     <section id='news' className='myScroll'>
@@ -30,14 +35,14 @@ function News(){
         <h2>RECENT NEWS</h2>
         
         <div className="txtBox">
-          {
-            posts.map((post,index)=>{
+          {            
+            posts.map((post,index)=>{              
               return (
                 <article key={index}>
                   <h3>{post.title}</h3>
                   <p>{post.content}</p>
                 </article>
-              )
+              )             
             })
           }
         </div>
