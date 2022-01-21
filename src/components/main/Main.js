@@ -21,8 +21,8 @@ function Main(){
     const secs = main.current.querySelectorAll('.myScroll');
     let arr = [];
     for(let sec of secs) arr.push(sec.offsetTop);
-    pos.current = arr;   
-    console.log(pos.current);
+    pos.current = arr;  
+
   }
  
   const handleScroll = ()=>{   

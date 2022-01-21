@@ -210,6 +210,16 @@ figure {
   height: 100vh;
   background: pink;
   position: relative;
+  padding: 150px 0px;
+}
+#info .inner {
+  width: 1180px;
+  margin: 0px auto;
+  position: relative;
+}
+#info .inner h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #btns {

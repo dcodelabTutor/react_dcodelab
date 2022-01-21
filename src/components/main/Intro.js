@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 function Intro(){  
   const members = useSelector(state=>state.memberReducer.members);
-  console.log(members);
 
   return (
     <section id='intro' className='myScroll'>
