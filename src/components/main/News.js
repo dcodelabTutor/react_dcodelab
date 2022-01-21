@@ -22,8 +22,8 @@ function News(){
     }
   }
   const [posts]= useState(getLocalItems); 
-  const [conut, setCount] = useState(0);
 
+  console.log(posts);
 
   useEffect(()=>{
     localStorage.setItem('posts', JSON.stringify(posts));   
@@ -36,13 +36,15 @@ function News(){
         
         <div className="txtBox">
           {            
-            posts.map((post,index)=>{              
-              return (
-                <article key={index}>
-                  <h3>{post.title}</h3>
-                  <p>{post.content}</p>
-                </article>
-              )             
+            posts.map((post,index)=>{           
+              if(index < 6){                
+                return (
+                  <article key={index}>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                  </article>
+                )  
+              }                                   
             })
           }
         </div>
