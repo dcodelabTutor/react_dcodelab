@@ -13,7 +13,7 @@ const initMember = {
 //이때 두번째 인수인 action객체로부터는 type(액션이름)과 payload(자식 컴포넌트에서 전달받을 값)을 전달받음
 const memberReducer=(state=initMember, action)=>{
   switch (action.type){
-    //추후 자식에서 호출한 acition.type에 따라 해당 reducer의 값을 변경가능
+    //추후 하위 컴포넌트에서 호출한 acition.type에 따라 해당 reducer의 값을 변경가능
     case 'SET_MEMBERS' :
       return {...state, members: action.payload}
 
