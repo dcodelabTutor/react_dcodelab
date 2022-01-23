@@ -60,7 +60,7 @@ function Main(){
     <div id='mainWrap' ref={main}>
       <Header type={'main'} />
       <Visual />
-      <News />
+      {/* <News /> */}
       <Intro />
       <Info />
       <Pics />
