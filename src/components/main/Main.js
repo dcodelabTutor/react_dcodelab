@@ -1,6 +1,6 @@
 import Header from '../common/Header.js';
 import Visual from './Visual.js';
-import News from './News.js';
+// import News from './News.js';
 import Intro from './Intro.js';
 import Info from './Info.js';
 import Pics from './Pics.js';

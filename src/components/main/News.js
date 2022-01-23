@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react/cjs/react.development";
-
+/*
 function News(){
 
   const basic = [        
@@ -52,3 +52,4 @@ function News(){
 }
 
 export default News;
+*/
