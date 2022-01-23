@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react_dcodelab/static/css/main.39b06e16.css",
-    "main.js": "/react_dcodelab/static/js/main.fbd1d8ea.js",
+    "main.js": "/react_dcodelab/static/js/main.17418842.js",
     "index.html": "/react_dcodelab/index.html",
     "main.39b06e16.css.map": "/react_dcodelab/static/css/main.39b06e16.css.map",
-    "main.fbd1d8ea.js.map": "/react_dcodelab/static/js/main.fbd1d8ea.js.map"
+    "main.17418842.js.map": "/react_dcodelab/static/js/main.17418842.js.map"
   },
   "entrypoints": [
     "static/css/main.39b06e16.css",
-    "static/js/main.fbd1d8ea.js"
+    "static/js/main.17418842.js"
   ]
 }
