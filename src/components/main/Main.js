@@ -3,6 +3,7 @@ import Visual from './Visual.js';
 import News from './News.js';
 import Intro from './Intro.js';
 import Info from './Info.js';
+import Pics from './Pics.js';
 import Btns from './Btns.js';
 import Anime from '../../class/anime.js';
 import { useEffect, useState, useRef } from 'react';
@@ -62,6 +63,7 @@ function Main(){
       <News />
       <Intro />
       <Info />
+      <Pics />
       <Btns getIndex={getIndex} />
     </div>
   )

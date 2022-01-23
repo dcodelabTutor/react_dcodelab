@@ -1,27 +1,18 @@
-import axios from "axios";
 import {useEffect, useState, useRef} from "react";
+import {useSelector} from 'react-redux';
 
 const body = document.querySelector("body");
 
 function Gallery(){
-  let [items, setItems] = useState([]);
+  const frame = useRef(null);  
   let [isPop, setIsPop] = useState(false);
-  //썸네일 클릭 이벤트 발생시 해당 순번값을 관리하는 state생성
   let [index, setIndex] = useState(0);
 
-  const frame = useRef(null);  
+  const flickr = useSelector(state=>state);
+  const picData = flickr.flickrReducer.flickr; 
+ 
 
-  const api_key = "e7ed3b39fe112d7e93d03c19325305e0";
-  const url = `https://www.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${api_key}&per_page=100&format=json&nojsoncallback=1`;
-
-  useEffect(()=>{
-    axios
-      .get(url)
-      .then(json=>{
-        console.log(json);
-        setItems(json.data.photos.photo);
-      })
-
+  useEffect(()=>{ 
       frame.current.classList.add('on');
   },[]);
 
@@ -32,7 +23,7 @@ function Gallery(){
 
         <section className="">
           {            
-            items.map((item,index)=>{
+            picData.map((item,index)=>{
               const imgSrc = `https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}_m.jpg`;
 
               return (
@@ -61,10 +52,8 @@ function Gallery(){
     </main>    
   )
 
-  function Pop(){
-    //컴포넌트 상단에 있는 items, index스테이트값을 활용해서
-    //items라는 배열에서 index번째의 객체값의 키값을 사용해서 이미지 url생성
-    const imgSrc = `https://live.staticflickr.com/${items[index].server}/${items[index].id}_${items[index].secret}_b.jpg`;
+  function Pop(){   
+    const imgSrc = `https://live.staticflickr.com/${picData[index].server}/${picData[index].id}_${picData[index].secret}_b.jpg`;
 
     useEffect(()=>{
       console.log("pop 생성")
@@ -77,11 +66,9 @@ function Gallery(){
     },[]);
 
     return (
-      <aside className="pop">
-        {/* 해당 이미지 url적용 */}
-        <img src={imgSrc} />
-        {/* items의 index번째 객체 안에 있는 텍스트 */}
-        <p>{items[index].title}</p>
+      <aside className="pop">    
+        <img src={imgSrc} /> 
+        <p>{picData[index].title}</p>
         <span onClick={()=>{
           setIsPop(false);
         }}>Close</span>
